@@ -6,7 +6,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 10,
     },
+    inputContainer: {
+        width: 300,
+
+    },
+    button:{
+        width: 200,
+        marginTop: 10,
+    }
 });
 
 export default styles;
