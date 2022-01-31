@@ -1,5 +1,5 @@
 import React, {useLayoutEffect, useState} from 'react';
-import styles from 'signal_clone_app/style.js';
+import styles from "../style";
 import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import { Button, Input, Text, Image } from 'react-native-elements';
 import {StatusBar} from 'expo-status-bar';
@@ -21,11 +21,10 @@ const RegisterScreen = ({ navigation }) => {
         //returns a promise to us .then is success and .catch is error
         auth.createUserWithEmailAndPassword(email, password).then(
             (authUser) => {
-                authUser.user.update
-                ({
-                displayName: name,
-                photoURL: imageURL || "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png"
-                })
+                authUser.user.updateProfile({
+                    displayName: name,
+                    photoURL: imageURL || "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png"
+                }).then()
             }).catch((error) => alert(error.message));
     };
 

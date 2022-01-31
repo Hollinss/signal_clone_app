@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import styles from 'signal_clone_app/style.js';
+import styles from "../style";
 import {KeyboardAvoidingView, StyleSheet, Text, View} from 'react-native';
 import { Button, Input, Image } from 'react-native-elements';
 import {StatusBar} from 'expo-status-bar';
