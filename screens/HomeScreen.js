@@ -1,15 +1,30 @@
 import React, {useLayoutEffect, useState} from 'react';
 import styles from "../style";
-import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
-import { Button, Input, Text, Image } from 'react-native-elements';
-import {StatusBar} from 'expo-status-bar';
-import {auth} from "../firebase"
+import {KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import CustomListItem from "../components/CustomListItem";
+import {Avatar} from "react-native-elements";
+import {auth} from "../firebase";
 
-const HomeScreen = () => {
+const HomeScreen = ( {navigation} ) => {
+
+    useLayoutEffect(()=>{
+        navigation.setOptions({
+            title: "Signal",
+            headerStyle: { backgroundColor: "green" },
+            headerLeft: () => (
+              <View style={{ marginLeft: 20 }}>
+                <Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
+              </View>
+            ),
+        });
+    }, []);
+
     return (
-        <View>
-            <Text>HomePage</Text>
-        </View>
+        <SafeAreaView>
+            <ScrollView>
+                <CustomListItem/>
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 

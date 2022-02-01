@@ -21,7 +21,8 @@ const globalScreenOptions = {
 export default function App() {
   return (
       <NavigationContainer>
-          <Stack.Navigator screenOptions = {globalScreenOptions}>
+          <Stack.Navigator
+              screenOptions = {globalScreenOptions}>
               <Stack.Screen
                   options = {{
                       title: "Sign Up Screen",

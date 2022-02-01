@@ -4,6 +4,7 @@ import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import { Button, Input, Text, Image } from 'react-native-elements';
 import {StatusBar} from 'expo-status-bar';
 import {auth} from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState("");
@@ -19,11 +20,11 @@ const RegisterScreen = ({ navigation }) => {
 
     const register = () => {
         //returns a promise to us .then is success and .catch is error
-        auth.createUserWithEmailAndPassword(email, password).then(
+        createUserWithEmailAndPassword(auth, email, password).then(
             (authUser) => {
                 authUser.user.updateProfile({
                     displayName: name,
-                    photoURL: imageURL || "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png"
+                    photoURL: "https://nick-intl.mtvnimages.com/uri/mgid:file:gsp:scenic:/international/nick.co.uk/shows/avatar/show-cover-avatar.jpg?quality=0.75&height=0&width=480&matte=true&crop=false"
                 }).then()
             }).catch((error) => alert(error.message));
     };
