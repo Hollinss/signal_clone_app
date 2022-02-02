@@ -4,13 +4,14 @@ import {KeyboardAvoidingView, StyleSheet, Text, View} from 'react-native';
 import { Button, Input, Image } from 'react-native-elements';
 import {StatusBar} from 'expo-status-bar';
 import {auth} from "../firebase";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(()=>{
-        const unsubscribe = auth.onAuthStateChanged((authUser)=>{
+        const unsubscribe = onAuthStateChanged(auth, (authUser)=>{
             if(authUser) {
                 navigation.replace("Home");
             }
@@ -20,7 +21,8 @@ const LoginScreen = ({ navigation }) => {
     }, []); //adding dependency array because want useEffect to trigger on mount only
 
     const signIn = () => {
-
+        signInWithEmailAndPassword(auth, email, password)
+            .catch((error) => alert(error));
     }
     return (
         <KeyboardAvoidingView behavior='padding'  style={styles.container}>
@@ -40,7 +42,8 @@ const LoginScreen = ({ navigation }) => {
                        secureTextEntry
                        type="password"
                        value={password}
-                       onChangeText={(text) => setPassword(text)}/>
+                       onChangeText={(text) => setPassword(text)}
+                       onSubmitEditing={signIn}/>
             </View>
 
             <Button containerStyle={styles.button} onPress={signIn}

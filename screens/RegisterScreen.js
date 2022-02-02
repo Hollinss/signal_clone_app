@@ -24,7 +24,7 @@ const RegisterScreen = ({ navigation }) => {
             (authUser) => {
                 authUser.user.updateProfile({
                     displayName: name,
-                    photoURL: "https://nick-intl.mtvnimages.com/uri/mgid:file:gsp:scenic:/international/nick.co.uk/shows/avatar/show-cover-avatar.jpg?quality=0.75&height=0&width=480&matte=true&crop=false"
+                    photoURL: imageURL || "https://nick-intl.mtvnimages.com/uri/mgid:file:gsp:scenic:/international/nick.co.uk/shows/avatar/show-cover-avatar.jpg?quality=0.75&height=0&width=480&matte=true&crop=false",
                 }).then()
             }).catch((error) => alert(error.message));
     };
